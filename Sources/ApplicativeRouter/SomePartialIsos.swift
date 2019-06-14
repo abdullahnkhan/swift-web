@@ -3,6 +3,7 @@ import Foundation
 import Optics
 import Prelude
 import UrlFormEncoding
+import Tagged 
 
 extension Optional {
   public enum iso {

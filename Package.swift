@@ -20,7 +20,7 @@ let package = Package(
     .library(name: "View", targets: ["View"])
     ],
   dependencies: [
-    .package(url: "https://github.com/pointfreeco/swift-prelude.git", .branch("swift-5")),
+    .package(url: "https://github.com/pointfreeco/swift-prelude.git", .branch("70cd70c")),
     .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.5.0"),
     .package(url: "https://github.com/pointfreeco/swift-html", .exact("0.2.1")),
     .package(url: "https://github.com/apple/swift-nio.git", from: "2.0.0"),
@@ -28,32 +28,33 @@ let package = Package(
 //    .package(url: "https://github.com/apple/swift-nio-http2.git", .branch("master")),
     .package(url: "https://github.com/apple/swift-nio-ssl.git", from: "2.0.0"),
     .package(url: "https://github.com/IBM-Swift/BlueCryptor.git", .exact("1.0.23")),
+    .package(url: "https://github.com/pointfreeco/swift-tagged.git", .branch("master"))
   ],
   targets: [
-    .target(name: "ApplicativeRouter", dependencies: ["Either", "Optics", "Prelude", "UrlFormEncoding"]),
+    .target(name: "ApplicativeRouter", dependencies: ["Either", "Optics", "Prelude", "UrlFormEncoding", "Tagged"]),
     .testTarget(name: "ApplicativeRouterTests", dependencies: ["ApplicativeRouter", "Optics", "SnapshotTesting", "HttpPipelineTestSupport"]),
 
     .target(name: "ApplicativeRouterHttpPipelineSupport",
-            dependencies: ["ApplicativeRouter", "HttpPipeline", "Prelude"]),
+            dependencies: ["ApplicativeRouter", "HttpPipeline", "Prelude","Tagged"]),
     .testTarget(name: "ApplicativeRouterHttpPipelineSupportTests",
                 dependencies: ["ApplicativeRouterHttpPipelineSupport", "HttpPipelineTestSupport", "SnapshotTesting"]),
 
-    .target(name: "Css", dependencies: ["Either", "Prelude"]),
+    .target(name: "Css", dependencies: ["Either", "Prelude","Tagged"]),
     .testTarget(name: "CssTests", dependencies: ["Css", "CssTestSupport"]),
 
-    .target(name: "CssReset", dependencies: ["Css"]),
+    .target(name: "CssReset", dependencies: ["Css","Tagged"]),
     .testTarget(name: "CssResetTests", dependencies: ["CssReset", "CssTestSupport"]),
 
     .target(name: "CssTestSupport", dependencies: ["Css", "SnapshotTesting"]),
 
-    .target(name: "HtmlCssSupport", dependencies: ["Css", "Html"]),
+    .target(name: "HtmlCssSupport", dependencies: ["Css", "Html","Tagged"]),
     .testTarget(name: "HtmlCssSupportTests", dependencies: ["HtmlCssSupport", "CssTestSupport", "HtmlSnapshotTesting"]),
 
-    .target(name: "HtmlPlainTextPrint", dependencies: ["Html", "Prelude"]),
+    .target(name: "HtmlPlainTextPrint", dependencies: ["Html", "Prelude", "Tagged"]),
     .testTarget(name: "HtmlPlainTextPrintTests", dependencies: ["HtmlPlainTextPrint", "Css", "Html", "HtmlCssSupport", "SnapshotTesting"]),
 
     .target(name: "HttpPipeline",
-            dependencies: ["Cryptor", "Html", "NIO", "NIOHTTP1", "NIOHTTPCompression", "NIOSSL", "Prelude", "Optics"]),
+            dependencies: ["Cryptor", "Html", "NIO", "NIOHTTP1", "NIOHTTPCompression", "NIOSSL", "Prelude", "Optics","Tagged"]),
 //    .target(name: "HttpPipelineExample",
 //            dependencies: ["HttpPipeline", "HttpPipelineHtmlSupport"]),
     .testTarget(name: "HttpPipelineTests",
@@ -64,9 +65,9 @@ let package = Package(
 
     .target(name: "HttpPipelineTestSupport", dependencies: ["HttpPipeline", "Html", "SnapshotTesting"]),
 
-    .target(name: "UrlFormEncoding", dependencies: ["Prelude", "Optics"]),
+    .target(name: "UrlFormEncoding", dependencies: ["Prelude", "Optics","Tagged"]),
     .testTarget(name: "UrlFormEncodingTests", dependencies: ["UrlFormEncoding", "SnapshotTesting"]),
 
-    .target(name: "View", dependencies: ["Html", "Prelude"]),
+    .target(name: "View", dependencies: ["Html", "Prelude","Tagged"]),
     ]
 )
