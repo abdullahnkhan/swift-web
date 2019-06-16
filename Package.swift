@@ -27,7 +27,7 @@ let package = Package(
     .package(url: "https://github.com/apple/swift-nio-extras.git", from: "1.0.0"),
 //    .package(url: "https://github.com/apple/swift-nio-http2.git", .branch("master")),
     .package(url: "https://github.com/apple/swift-nio-ssl.git", from: "2.0.0"),
-    .package(url: "https://github.com/IBM-Swift/BlueCryptor.git", .exact("1.0.23")),
+    .package(url: "https://github.com/IBM-Swift/BlueCryptor.git", .branch("211db85")),
     .package(url: "https://github.com/pointfreeco/swift-tagged.git", .branch("master"))
   ],
   targets: [

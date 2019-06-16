@@ -3,7 +3,7 @@ import Html
 import HttpPipeline
 import Prelude
 
-let doc = document([
+let doc = 
   html([
     body([
       p(["Hello world!"]),
@@ -11,7 +11,7 @@ let doc = document([
       a([href("/")], ["Home"])
       ])
     ])
-  ])
+
 
 let middleware =
   writeStatus(.ok)
@@ -21,5 +21,6 @@ let middleware =
 
 let request = URLRequest(url: URL(string: "/")!)
 let conn = connection(from: request).map(const(Data()))
+
 
 print(middleware(conn).perform())
